@@ -10,20 +10,20 @@ import org.apache.hadoop.hbase.client.HBaseAdmin;
 public class hbase_test {
 	public static void main(String[] args) throws IOException,
 		MasterNotRunningException,ZooKeeperConnectionException{
-		// È¡µÃÒ»¸öÊı¾İ¿âÁ¬½ÓµÄÅäÖÃ²ÎÊı¶ÔÏó
+		// å–å¾—ä¸€ä¸ªæ•°æ®åº“è¿æ¥çš„é…ç½®å‚æ•°å¯¹è±¡
         org.apache.hadoop.conf.Configuration conf = HBaseConfiguration.create();
 
-        // ÉèÖÃÁ¬½Ó²ÎÊı£ºHBaseÊı¾İ¿âËùÔÚµÄÖ÷»úIP
-        conf.set("hbase.zookeeper.quorum", "192.168.20.59,192.168.20.61,192.168.20.63");
-        System.out.println("---------------Á¬½Ó1-----------------");
-        // ÉèÖÃÁ¬½Ó²ÎÊı£ºHBaseÊı¾İ¿âÊ¹ÓÃµÄ¶Ë¿Ú
+        // è®¾ç½®è¿æ¥å‚æ•°ï¼šHBaseæ•°æ®åº“æ‰€åœ¨çš„ä¸»æœºIP
+        conf.set("hbase.zookeeper.quorum", "192.168.10.59,192.168.10.61,192.168.10.63");
+        System.out.println("---------------è¿æ¥1-----------------");
+        // è®¾ç½®è¿æ¥å‚æ•°ï¼šHBaseæ•°æ®åº“ä½¿ç”¨çš„ç«¯å£
         conf.set("hbase.zookeeper.property.clientPort", "2181");
-        System.out.println("---------------Á¬½Ó2-----------------");
-        //conf.set("hbase.master", "192.168.20.59:60000");
+        System.out.println("---------------è¿æ¥2-----------------");
+        //conf.set("hbase.master", "192.168.10.59:60000");
 
-        // È¡µÃÒ»¸öÊı¾İ¿âÁ¬½Ó¶ÔÏó
+        // å–å¾—ä¸€ä¸ªæ•°æ®åº“è¿æ¥å¯¹è±¡
         //connection = ConnectionFactory.createConnection(conf);
-        //System.out.println("---------------Á¬½Ó3-----------------");
+        //System.out.println("---------------è¿æ¥3-----------------");
 		
 		try{
 			HBaseAdmin.checkHBaseAvailable(conf);
