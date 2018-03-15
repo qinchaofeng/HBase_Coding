@@ -16,71 +16,71 @@ import org.junit.Before;
 
 public class hbase_create {
 
-    // ÓëHBaseÊı¾İ¿âµÄÁ¬½Ó¶ÔÏó
+    // ä¸HBaseæ•°æ®åº“çš„è¿æ¥å¯¹è±¡
     static Connection connection;
 
-    // Êı¾İ¿âÔªÊı¾İ²Ù×÷¶ÔÏó
+    // æ•°æ®åº“å…ƒæ•°æ®æ“ä½œå¯¹è±¡
     static Admin admin;
 
     @Before
     public static void main(String[] args) throws IOException,
 	MasterNotRunningException,ZooKeeperConnectionException {
 
-        // È¡µÃÒ»¸öÊı¾İ¿âÁ¬½ÓµÄÅäÖÃ²ÎÊı¶ÔÏó
+        // å–å¾—ä¸€ä¸ªæ•°æ®åº“è¿æ¥çš„é…ç½®å‚æ•°å¯¹è±¡
         Configuration conf = HBaseConfiguration.create();
 
-        // ÉèÖÃÁ¬½Ó²ÎÊı£ºHBaseÊı¾İ¿âËùÔÚµÄÖ÷»úIP
-        conf.set("hbase.zookeeper.quorum", "192.168.20.59,192.168.20.61,192.168.20.63");
+        // è®¾ç½®è¿æ¥å‚æ•°ï¼šHBaseæ•°æ®åº“æ‰€åœ¨çš„ä¸»æœºIP
+        conf.set("hbase.zookeeper.quorum", "192.168.20.59,192.168.10.1,192.168.10.63");
         //conf.set("hbase.zookeeper.quorum", "ly1f-r021701-vm05.local,ly1f-r021701-vm06.local,ly1f-r021701-vm07.local");
-        System.out.println("---------------Á¬½Ó1-----------------");
-        // ÉèÖÃÁ¬½Ó²ÎÊı£ºHBaseÊı¾İ¿âÊ¹ÓÃµÄ¶Ë¿Ú
+        System.out.println("---------------è¿æ¥1-----------------");
+        // è®¾ç½®è¿æ¥å‚æ•°ï¼šHBaseæ•°æ®åº“ä½¿ç”¨çš„ç«¯å£
         conf.set("hbase.zookeeper.property.clientPort", "2181");
-        System.out.println("---------------Á¬½Ó2-----------------");
-        conf.set("hbase.master", "192.168.20.59:60000");
+        System.out.println("---------------è¿æ¥2-----------------");
+        conf.set("hbase.master", "192.168.10.59:60000");
         //conf.set("zookeeper.znode.parent","/hbase");  
         conf.set("zookeeper.znode.parent", "/hbase-unsecure");
         
         
 
-        // È¡µÃÒ»¸öÊı¾İ¿âÁ¬½Ó¶ÔÏó
+        // å–å¾—ä¸€ä¸ªæ•°æ®åº“è¿æ¥å¯¹è±¡
         connection = ConnectionFactory.createConnection(conf);
-        System.out.println("---------------Á¬½Ó3-----------------");
+        System.out.println("---------------è¿æ¥3-----------------");
 
-        // È¡µÃÒ»¸öÊı¾İ¿âÔªÊı¾İ²Ù×÷¶ÔÏó
+        // å–å¾—ä¸€ä¸ªæ•°æ®åº“å…ƒæ•°æ®æ“ä½œå¯¹è±¡
         admin = connection.getAdmin();
-        System.out.println("---------------Á¬½Ó4-----------------");
+        System.out.println("---------------è¿æ¥4-----------------");
         
-        System.out.println("---------------´´½¨±í START-----------------");
+        System.out.println("---------------åˆ›å»ºè¡¨ START-----------------");
 
-        // Êı¾İ±í±íÃû
+        // æ•°æ®è¡¨è¡¨å
         String tableNameString = "t_test_qcf11";
 
-        // ĞÂ½¨Ò»¸öÊı¾İ±í±íÃû¶ÔÏó
+        // æ–°å»ºä¸€ä¸ªæ•°æ®è¡¨è¡¨åå¯¹è±¡
         TableName tableName = TableName.valueOf(tableNameString);
         System.out.println("tablename:"+tableName);
-        System.out.println("---------------´´½¨±í STARTing-----------------");
+        System.out.println("---------------åˆ›å»ºè¡¨ STARTing-----------------");
 
-        // Èç¹ûĞèÒªĞÂ½¨µÄ±íÒÑ¾­´æÔÚ
+        // å¦‚æœéœ€è¦æ–°å»ºçš„è¡¨å·²ç»å­˜åœ¨
         if(admin.tableExists(tableName)){
 
-            System.out.println("±íÒÑ¾­´æÔÚ£¡");
+            System.out.println("è¡¨å·²ç»å­˜åœ¨ï¼");
         }
-        // Èç¹ûĞèÒªĞÂ½¨µÄ±í²»´æÔÚ
+        // å¦‚æœéœ€è¦æ–°å»ºçš„è¡¨ä¸å­˜åœ¨
         else{
 
-            // Êı¾İ±íÃèÊö¶ÔÏó
+            // æ•°æ®è¡¨æè¿°å¯¹è±¡
             HTableDescriptor hTableDescriptor = new HTableDescriptor(tableName);
-            // ÁĞ×åÃèÊö¶ÔÏó
+            // åˆ—æ—æè¿°å¯¹è±¡
             HColumnDescriptor family= new HColumnDescriptor("base");
-            System.out.println("---------------´´½¨±í ing-----------------");
+            System.out.println("---------------åˆ›å»ºè¡¨ ing-----------------");
 
-            // ÔÚÊı¾İ±íÖĞĞÂ½¨Ò»¸öÁĞ×å
+            // åœ¨æ•°æ®è¡¨ä¸­æ–°å»ºä¸€ä¸ªåˆ—æ—
             hTableDescriptor.addFamily(family);
 
-            // ĞÂ½¨Êı¾İ±í
+            // æ–°å»ºæ•°æ®è¡¨
             admin.createTable(hTableDescriptor);
         }
-        System.out.println("---------------´´½¨±í END-----------------");
+        System.out.println("---------------åˆ›å»ºè¡¨ END-----------------");
     }
  
 
