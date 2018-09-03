@@ -36,7 +36,7 @@ public class hbase_create {
         // 设置连接参数：HBase数据库使用的端口
         conf.set("hbase.zookeeper.property.clientPort", "2181");
         System.out.println("---------------连接2-----------------");
-        conf.set("hbase.master", "192.168.10.59:60000");
+        conf.set("hbase.master", "192.1.10.1:60000");
         //conf.set("zookeeper.znode.parent","/hbase");  
         conf.set("zookeeper.znode.parent", "/hbase-unsecure");
         
