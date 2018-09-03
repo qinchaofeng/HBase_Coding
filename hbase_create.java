@@ -30,7 +30,7 @@ public class hbase_create {
         Configuration conf = HBaseConfiguration.create();
 
         // 设置连接参数：HBase数据库所在的主机IP
-        conf.set("hbase.zookeeper.quorum", "192.168.20.59,192.168.10.1,192.168.10.63");
+        conf.set("hbase.zookeeper.quorum", "172.1.1.1,192.1.1.1,192.1.1.2");
         //conf.set("hbase.zookeeper.quorum", "ly1f-r021701-vm05.local,ly1f-r021701-vm06.local,ly1f-r021701-vm07.local");
         System.out.println("---------------连接1-----------------");
         // 设置连接参数：HBase数据库使用的端口
